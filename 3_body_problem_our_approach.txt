@@ -1,1 +1,28 @@
-								3 BODY PROBLEM – OUR APPROACH - Test set does not give velocities – it gives positions x and y for the 3 bodies at t=0 for various simulations, and initial velocity is always 0. (??? - why are there various times that have the positions at t=0 in this data?)  - Train set – as some regions of the table with probably “faulty” simulations, where there is a sequence of lines with all values (except ID) = 0; this is data that will skew our model, so we aim to strip the train set of it with code/function that does something of the sort: 	if line all 0 (except ID): 		line.strip() 	else: 		Skip (this is an important part of our data preprocessing)  - To account for data outliers and because position, velocity and time are measured using different scales, it is probably reasonable to use some type of standardisation.  - To the aims in 2. and 3., we started by printing out a table with descriptive statistics of our variables across all simulations – summary_stats.xlsx- We want to predict 6 continuous variables based on continuous variables --> therefore, we can consider this a (multivariate) regression problem- Variables are not independent from one another - we have to adjust for that non independence/covariance/collinearity- We have initial positions and positions at fixed times between t=0 and t=10 for various simulations; at those initial positions (that vary between simulations all bodies) have v=0 in both velocity components (x and y)- Given an initial position --> Where do the bodies go ?
+								3 BODY PROBLEM â€“ OUR APPROACH 
+
+
+- Test set does not give velocities â€“ it gives positions x and y for the 3 bodies at t=0 for various simulations, and initial velocity is always 0. 
+(??? - why are there various times that have the positions at t=0 in this data?) 
+
+ 
+- Train set â€“ as some regions of the table with probably â€œfaultyâ€ simulations, where there is a sequence of lines with all values (except ID) = 0; 
+this is data that will skew our model, so we aim to strip the train set of it with code/function that does something of the sort: 
+	if line all 0 (except ID): 
+		line.strip() 
+	else: 
+		Skip 
+(this is an important part of our data preprocessing) 
+
+ 
+- To account for data outliers and because position, velocity and time are measured using different scales, it is probably reasonable to use some type of standardisation. 
+
+ 
+- To the aims in 2. and 3., we started by printing out a table with descriptive statistics of our variables across all simulations â€“ summary_stats.xlsx
+
+
+- We want to predict 6 continuous variables based on continuous variables --> therefore, we can consider this a (multivariate) regression problem
+- Variables are not independent from one another - we have to adjust for that non independence/covariance/collinearity
+
+
+- We have initial positions and positions at fixed times between t=0 and t=10 for various simulations; at those initial positions (that vary between simulations all bodies) have v=0 in both velocity components (x and y)
+- Given an initial position --> Where do the bodies go ?
