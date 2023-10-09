@@ -5,15 +5,17 @@
 (??? - why are there various times that have the positions at t=0 in this data?) 
 
  
-- Train set – as some regions of the table with probably “faulty” simulations, where there is a sequence of lines with all values (except ID) = 0; 
-this is data that will skew our model, so we aim to strip the train set of it with code/function that does something of the sort: 
-	if line all 0 (except ID): 
-		line.strip() 
-	else: 
-		Skip 
+- Train set – Impecting the dataset, we noticed that some regions of the table had long sets of lines whose values where 0.0 for all variables (apart from Id). Given that this dataset results from the collection of data from simulations with probably “faulty” simulations, where there is a sequence of lines with all values (except ID) = 0; 
+this is data that will skew our model, so we stripped the train set of it: 
+	# Identify faulty rows based on the criterion (all values = 0.0 except for Id)
+		faulty_rows = train_data[(train_data.drop('Id', axis=1) == 0).all(axis=1)]
+	# Remove the faulty rows from the DataFrame
+		filtered_train_data = train_data[~train_data.index.isin(faulty_rows.index)] 
 (this is an important part of our data preprocessing) 
 
- 
+- To visualise collinearity/correlation between the variables, we calculated a correlation matrix (visualised as a heatmap) and we created a pairwise plotting of variables with their distribution (smoothed)
+
+
 - To account for data outliers and because position, velocity and time are measured using different scales, it is probably reasonable to use some type of standardisation. 
 
  
